@@ -7,8 +7,18 @@ import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+
+import os
+import pandas as pd
+
+# Get the folder where dashboard.py is located
+BASE_DIR = os.path.dirname(__file__)
+DATA_PATH = os.path.join(BASE_DIR, "Data", "sales.csv")  # Capital D!
+
+# Read CSV
+data = pd.read_csv(DATA_PATH, encoding='latin1')
+
 # Load data
-data = pd.read_csv("data/sales.csv", encoding='latin1')
 data = data.dropna()
 data['Order Date'] = pd.to_datetime(data['Order Date'])
 data['Month'] = data['Order Date'].dt.month
